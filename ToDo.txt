@@ -1,0 +1,6 @@
+Chat history
+Chat box
+button "SendMessage"
+WebSocket connection
+WebSocket form
+import methods from websocket-chat-client repository

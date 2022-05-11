@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Chat Client</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="ws_client.js"></script>
+</head>
+
+<body>
+    <div class="menuBar">
+        <input type="button" value="Create a chat room" onclick="CreateRoom('room01', 'pwd01')"></input>
+    </div>
+    <div class="chatHistory" id="chatHistory"></div>
+    <textarea class="chatBox" id="chatBox" placeholder="Write your message here"></textarea>
+    <input class="sendButton" type="button" value="SEND" onclick="SendMessage()"></input>
+</body>
+
+</html>
