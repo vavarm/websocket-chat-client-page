@@ -4,16 +4,62 @@
 <head>
     <title>Chat Client</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="modal_form.js"></script>
     <script type="text/javascript" src="ws_client.js"></script>
 </head>
 
 <body>
-    <div class="menuBar">
-        <input type="button" value="Create a chat room" onclick="CreateRoom('room01', 'pwd01')"></input>
+    <!-- The WSConnection Modal -->
+    <div id="WS-modal" class="modal WS-modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-form">
+                <div>
+                    <label><b>Server address</b></label>
+                    <input type="text" placeholder="Example: 127.0.0.1 for localhost server" name="server-address" id="address-address">
+                </div>
+
+                <div>
+                    <label><b>Server port</b></label>
+                    <input type="text" placeholder="Example: 8080" name="server-port" id="server-port">
+                </div>
+
+            </div>
+            <div class="log-bar">
+                <input type="button" value="Connect" onclick="WSConnection()"></input>
+            </div>
+            <div id="connection-error-label" class="connection-error-label"></div>
+        </div>
     </div>
-    <div class="chatHistory" id="chatHistory"></div>
-    <textarea class="chatBox" id="chatBox" placeholder="Write your message here"></textarea>
-    <input class="sendButton" type="button" value="SEND" onclick="SendMessage()"></input>
+
+    <!-- The RoomConnection Modal -->
+    <div id="Room-modal" class="modal Room-modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-form">
+                <div>
+                    <label><b>Room Name</b></label>
+                    <input type="text" name="room-name" id="room-name">
+                </div>
+
+                <div>
+                    <label><b>Server port</b></label>
+                    <input type="text" name="room-name" id="room-name">
+                </div>
+            </div>
+            <div class="log-bar">
+                <input type="button" value="Create a chat room" onclick="CreateRoom('room01', 'pwd01')"></input>
+                <input type="button" value="Join a chat room" onclick="JoinRoom('room01', 'pwd01')"></input>
+            </div>
+            <div id="room-connection-error-label" class="room-connection-error-label"></div>
+        </div>
+    </div>
+
+    <div class="chat-history" id="chatHistory"></div>
+    <textarea class="chat-box" id="chatBox" placeholder="Write your message here"></textarea>
+    <input class="send-button" type="button" value="SEND" onclick="SendMessage()"></input>
 </body>
 
 </html>

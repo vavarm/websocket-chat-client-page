@@ -1,6 +1,5 @@
-Chat history
-Chat box
-button "SendMessage"
-WebSocket connection
-WebSocket form
-import methods from websocket-chat-client repository
+WebSocket form in modal box https://www.w3schools.com/howto/howto_css_modals.asp
+import methods from websocket-chat-client repository (Join)
+give a style to all elements of the page following a pattern
+different positions (left/right) of the messageReceivedDivs depending on the sender of the message (me OR another client)
+disable messageBox and sendButton while the client isn't in a room
