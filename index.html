@@ -4,7 +4,6 @@
 <head>
     <title>Chat Client</title>
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="modal_form.js"></script>
     <script type="text/javascript" src="ws_client.js"></script>
 </head>
 
@@ -17,7 +16,7 @@
             <div class="modal-form">
                 <div>
                     <label><b>Server address</b></label>
-                    <input type="text" placeholder="Example: 127.0.0.1 for localhost server" name="server-address" id="address-address">
+                    <input type="text" placeholder="Example: 127.0.0.1 for localhost server" name="server-address" id="server-address">
                 </div>
 
                 <div>
@@ -45,21 +44,29 @@
                 </div>
 
                 <div>
-                    <label><b>Server port</b></label>
-                    <input type="text" name="room-name" id="room-name">
+                    <label><b>Room Password</b></label>
+                    <input type="text" name="room-pwd" id="room-pwd">
                 </div>
+
+                <div>
+                    <label><b>Your username</b></label>
+                    <input type="text" name="username" id="username">
+                </div>
+
             </div>
             <div class="log-bar">
-                <input type="button" value="Create a chat room" onclick="CreateRoom('room01', 'pwd01')"></input>
+                <input type="button" value="Create a chat room" onclick="CreateRoom()"></input>
                 <input type="button" value="Join a chat room" onclick="JoinRoom('room01', 'pwd01')"></input>
             </div>
             <div id="room-connection-error-label" class="room-connection-error-label"></div>
         </div>
     </div>
 
+    <!-- Chat page -->
     <div class="chat-history" id="chatHistory"></div>
     <textarea class="chat-box" id="chatBox" placeholder="Write your message here"></textarea>
     <input class="send-button" type="button" value="SEND" onclick="SendMessage()"></input>
+
 </body>
 
 </html>

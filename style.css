@@ -27,12 +27,12 @@ body {
 }
 
 .WS-modal {
-    display: none;
+    display: block;
     /* 'block' to display the element, set to 'none' instead */
 }
 
 .Room-modal {
-    display: block;
+    display: none;
     /* 'block' to display the element, set to 'none' instead */
 }
 
@@ -57,12 +57,14 @@ body {
 }
 
 .modal-form>div {
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .modal-form>div>input {
-    width: 60%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .log-bar {
@@ -79,6 +81,10 @@ body {
 }
 
 .connection-error-label {
+    color: red;
+}
+
+.room-connection-error-label {
     color: red;
 }
 
