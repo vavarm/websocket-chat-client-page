@@ -43,13 +43,19 @@ function WSConnection() {
                 if (code == username) {
                     var msgReceivedDiv = document.createElement("div");
                     msgReceivedDiv.className = "own-msgReceivedDiv";
-                    msgReceivedDiv.textContent = dataJSON.msg;
                     document.getElementById("chatHistory").appendChild(msgReceivedDiv);
+                    var msgBubble = document.createElement("div");
+                    msgBubble.className = "own-msgBubble";
+                    msgBubble.textContent = dataJSON.msg;
+                    msgReceivedDiv.appendChild(msgBubble);
                 } else {
                     var msgReceivedDiv = document.createElement("div");
                     msgReceivedDiv.className = "msgReceivedDiv";
-                    msgReceivedDiv.textContent = dataJSON.msg;
                     document.getElementById("chatHistory").appendChild(msgReceivedDiv);
+                    var msgBubble = document.createElement("div");
+                    msgBubble.className = "msgBubble";
+                    msgBubble.textContent = dataJSON.msg;
+                    msgReceivedDiv.appendChild(msgBubble);
                 }
             } else if (topic == "issue") {
                 var errorMsg;
@@ -121,5 +127,5 @@ function SendMessage() {
     var chatBox = document.getElementById("chatBox");
     var msg = { sender: username, topic: "BcMsg", BcMsg: chatBox.value };
     wsSocket.send(JSON.stringify(msg));
-    console.log(JSON.stringify(msg));
+    // TODO erase message in the box
 }

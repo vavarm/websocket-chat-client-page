@@ -91,12 +91,14 @@ body {
 .chat-history {
     overflow-y: auto;
     height: 80vh;
+    padding-right: 5%;
+    padding-left: 5%;
 }
 
 .own-msgReceivedDiv {
     margin: auto;
-    width: 60%;
-    border: 5px solid green;
+    margin-right: 0;
+    max-width: 60%;
     padding: 10px;
     /* preserve the \n output */
     white-space: pre-wrap;
@@ -104,11 +106,27 @@ body {
 
 .msgReceivedDiv {
     margin: auto;
-    width: 60%;
-    border: 5px solid grey;
+    margin-left: 0;
+    max-width: 60%;
     padding: 10px;
     /* preserve the \n output */
     white-space: pre-wrap;
+}
+
+.own-msgBubble {
+    padding: 5px;
+    color: #FFFFFF;
+    background-color: #248BF5;
+    border: 5px solid #248BF5;
+    border-radius: 0.8rem 0.7rem;
+}
+
+.msgBubble {
+    padding: 5px;
+    color: #000000;
+    background-color: #E5E5EA;
+    border: 5px solid #E5E5EA;
+    border-radius: 0.8rem 0.7rem;
 }
 
 .chat-box {
