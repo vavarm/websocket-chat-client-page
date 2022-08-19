@@ -5,6 +5,8 @@ ws_config = {
 
 var wsSocket;
 
+var username;
+
 function WSConnection() {
     ws_config["server_address"] = document.getElementById("server-address").value;
     ws_config["server_port"] = document.getElementById("server-port").value;
@@ -38,10 +40,17 @@ function WSConnection() {
             var code = dataJSON.code;
             console.log(topic);
             if (topic == "BcMsg") {
-                var msgReceivedDiv = document.createElement("div");
-                msgReceivedDiv.className = "msgReceivedDiv";
-                msgReceivedDiv.textContent = dataJSON.msg;
-                document.getElementById("chatHistory").appendChild(msgReceivedDiv);
+                if (code == username) {
+                    var msgReceivedDiv = document.createElement("div");
+                    msgReceivedDiv.className = "own-msgReceivedDiv";
+                    msgReceivedDiv.textContent = dataJSON.msg;
+                    document.getElementById("chatHistory").appendChild(msgReceivedDiv);
+                } else {
+                    var msgReceivedDiv = document.createElement("div");
+                    msgReceivedDiv.className = "msgReceivedDiv";
+                    msgReceivedDiv.textContent = dataJSON.msg;
+                    document.getElementById("chatHistory").appendChild(msgReceivedDiv);
+                }
             } else if (topic == "issue") {
                 var errorMsg;
                 switch (code) {
@@ -67,8 +76,8 @@ function WSConnection() {
                 document.getElementById("Room-modal").style.display = "none";
             }
         });
-        //disconnection event listener (in the server side): send that the user has disconnected to all other users in the chat room
-        //disconnection event listener: reset function call: WSsocket.close + display the WS-modal + message: "You've been disconnected from the server"
+        // TODO disconnection event listener (in the server side): send that the user has disconnected to all other users in the chat room
+        // TODO disconnection event listener: reset function call: WSsocket.close + display the WS-modal + message: "You've been disconnected from the server"
     } catch {
         document.getElementById("connection-error-label").textContent =
             "Connection Error: Be sure that the credentials entered have a correct format";
@@ -79,7 +88,7 @@ function CreateRoom() {
     if (wsSocket.readyState == WebSocket.OPEN) {
         var roomName = document.getElementById("room-name").value;
         var roomPwd = document.getElementById("room-pwd").value;
-        var username = document.getElementById("username").value;
+        username = document.getElementById("username").value;
         var topic = "CreateRoom";
         var msg = {
             topic: topic,
@@ -90,14 +99,13 @@ function CreateRoom() {
         console.log(msg);
         wsSocket.send(JSON.stringify(msg));
     }
-    // TODO (in the disconnection listener): else: return to the WS-modal and put in the connection-error-label that the client was disconnected
 }
 
 function JoinRoom() {
     if (wsSocket.readyState == WebSocket.OPEN) {
         var roomName = document.getElementById("room-name").value;
         var roomPwd = document.getElementById("room-pwd").value;
-        var username = document.getElementById("username").value;
+        username = document.getElementById("username").value;
         var topic = "JoinRoom";
         var msg = {
             topic: topic,
@@ -111,7 +119,7 @@ function JoinRoom() {
 
 function SendMessage() {
     var chatBox = document.getElementById("chatBox");
-    var msg = { topic: "BcMsg", BcMsg: chatBox.value };
+    var msg = { sender: username, topic: "BcMsg", BcMsg: chatBox.value };
     wsSocket.send(JSON.stringify(msg));
     console.log(JSON.stringify(msg));
 }

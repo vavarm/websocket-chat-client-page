@@ -93,6 +93,15 @@ body {
     height: 80vh;
 }
 
+.own-msgReceivedDiv {
+    margin: auto;
+    width: 60%;
+    border: 5px solid green;
+    padding: 10px;
+    /* preserve the \n output */
+    white-space: pre-wrap;
+}
+
 .msgReceivedDiv {
     margin: auto;
     width: 60%;
